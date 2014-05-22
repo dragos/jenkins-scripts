@@ -15,7 +15,7 @@ if [ "$version_minor" = "12" ]
 fi
 
 BASEDIR=`pwd`
-UBERBUILD_URL="https://github.com/scala-ide/uber-build.git"
+UBERBUILD_URL="https://github.com/skyluc/uber-build.git"
 UBERBUILD_DIR="$BASEDIR/uber-build/"
 
 cd $BASEDIR
@@ -25,9 +25,10 @@ cd $BASEDIR
 #####################################################
 
 if [[ -d $UBERBUILD_DIR ]]; then
-  ( cd $UBERBUILD_DIR && git fetch $UBERBUILD_URL HEAD && git checkout -f FETCH_HEAD && git clean -fxd )
+  ( cd $UBERBUILD_DIR && git fetch $UBERBUILD_URL release/4.0.0M2-2.11.1 && git checkout -f FETCH_HEAD && git clean -fxd )
 else
   git clone $UBERBUILD_URL
+  ( cd $UBERBUILD_DIR && git checkout release/4.0.0M2-2.11.1)
 fi
 
 # pass prRepoUrl in, which uber-build passes along to dbuild (in sbt-builds-for-ide)
